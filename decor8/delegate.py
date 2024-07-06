@@ -1,4 +1,3 @@
-from functools import wraps
 from enum import Enum
 
 
@@ -12,6 +11,15 @@ class InvalidKind(Exception):
 
 
 def delegator(f):
+    """
+    :param f: The function to be delegated
+    :return: A Delegator object
+
+    The delegator decorator takes in a function f as a parameter and returns a Delegator object.
+
+    The Delegator object acts as a wrapper around the function f. It allows us to add before and after delegates
+    that will be called before and after the function f is executed.
+    """
     class Delegator:
         def __init__(self):
             self.before_delegates = []
@@ -34,6 +42,11 @@ def delegator(f):
 
 
 def delegate(of, kind: Kind):
+    """
+    :param of: The object on which the delegates will be registered.
+    :param kind: The kind of delegation to be performed. Should be one of the values from the `Kind` enumeration.
+    :return: The decorator function that registers the given function as a delegate on the specified object.
+    """
     def decorator(func):
         match kind:
             case Kind.BEFORE:

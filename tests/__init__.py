@@ -1,4 +1,4 @@
-from decor8 import describe
+from decor8.describe import describe
 from decor8.delegate import delegator, delegate, Kind
 
 
